@@ -53,6 +53,7 @@
 
 #include <string.h>
 
+#define LWIP_DEBUGF(debug, message)
 #ifndef LWIP_CHKSUM
 # define LWIP_CHKSUM lwip_standard_chksum
 # ifndef LWIP_CHKSUM_ALGORITHM

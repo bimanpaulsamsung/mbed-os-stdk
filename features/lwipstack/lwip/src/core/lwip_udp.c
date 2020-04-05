@@ -64,7 +64,7 @@
 #include "lwip/dhcp.h"
 
 #include <string.h>
-
+#define LWIP_DEBUGF(debug, message)
 #ifndef UDP_LOCAL_PORT_RANGE_START
 /* From http://www.iana.org/assignments/port-numbers:
    "The Dynamic and/or Private Ports are those from 49152 through 65535" */

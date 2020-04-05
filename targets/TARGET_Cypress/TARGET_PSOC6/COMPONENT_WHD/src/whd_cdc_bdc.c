@@ -640,7 +640,8 @@ void whd_process_bdc_event(whd_driver_t whd_driver, whd_buffer_t buffer, uint16_
     whd_event->reason     = (whd_event_reason_t)ntoh32(whd_event->reason);
     whd_event->auth_type  =                        ntoh32(whd_event->auth_type);
     whd_event->datalen    =                        ntoh32(whd_event->datalen);
-
+    if (whd_event->event_type != WLC_E_ESCAN_RESULT)
+    WPRINT_WHD_ERROR( ("%s (%d) " "whd_event->event_type %d" "\n", __func__, __LINE__, whd_event->event_type) );
     /* Ensure data length is correct */
     if (whd_event->datalen >
         (uint32_t)(size - ( (char *)DATA_AFTER_HEADER(event) - (char *)bdc_header ) ) )
@@ -695,6 +696,8 @@ void whd_process_bdc_event(whd_driver_t whd_driver, whd_buffer_t buffer, uint16_
                 if ( (cdc_bdc_info->whd_event_list[i].events[j] == whd_event->event_type) &&
                      (cdc_bdc_info->whd_event_list[i].ifidx == whd_event->ifidx) )
                 {
+                        if (whd_event->event_type != WLC_E_ESCAN_RESULT)
+                        WPRINT_WHD_ERROR( ("%s (%d) " "whd_event->event_type %d" "\n", __func__, __LINE__, whd_event->event_type) );
                     /* Correct event type has been found - call the handler function and exit loop */
                     cdc_bdc_info->whd_event_list[i].handler_user_data =
                         cdc_bdc_info->whd_event_list[i].handler(whd_driver->iflist[whd_event->bsscfgidx],

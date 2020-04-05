@@ -35,7 +35,7 @@
 #include "lwip/udp.h"
 #include "lwip/raw.h"
 #include "lwip/netif.h"
-#include "lwip/lwip_errno.h"
+#include "errno.h"
 #include "lwip-sys/arch/sys_arch.h"
 
 #include "LWIPStack.h"

@@ -89,6 +89,7 @@
 /* Since the pool is created in memp, PBUF_POOL_BUFSIZE will be automatically
    aligned there. Therefore, PBUF_POOL_BUFSIZE_ALIGNED can be used here. */
 #define PBUF_POOL_BUFSIZE_ALIGNED LWIP_MEM_ALIGN_SIZE(PBUF_POOL_BUFSIZE)
+#define LWIP_DEBUGF(debug, message)
 
 static const struct pbuf *
 pbuf_skip_const(const struct pbuf *in, u16_t in_offset, u16_t *out_offset);
@@ -728,7 +729,7 @@ pbuf_free(struct pbuf *p)
   u8_t count;
 
   if (p == NULL) {
-    LWIP_ASSERT("p != NULL", p != NULL);
+//    LWIP_ASSERT("p != NULL", p != NULL);
     /* if assertions are disabled, proceed with debug output */
     LWIP_DEBUGF(PBUF_DEBUG | LWIP_DBG_LEVEL_SERIOUS,
                 ("pbuf_free(p == NULL) was called.\n"));

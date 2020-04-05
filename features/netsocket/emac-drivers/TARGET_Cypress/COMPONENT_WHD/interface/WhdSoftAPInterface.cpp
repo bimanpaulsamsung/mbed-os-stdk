@@ -32,7 +32,7 @@ extern nsapi_security_t whd_tosecurity(whd_security_t sec);
 extern whd_security_t whd_fromsecurity(nsapi_security_t sec);
 extern "C" void whd_emac_wifi_link_state_changed(whd_interface_t ifp, whd_bool_t state_up);
 
-static const whd_event_num_t ap_events[] = { WLC_E_LINK, WLC_E_IF, WLC_E_DEAUTH, WLC_E_DEAUTH_IND, WLC_E_DISASSOC, WLC_E_DISASSOC_IND, WLC_E_ASSOC_IND, WLC_E_REASSOC_IND, WLC_E_NONE };
+static const whd_event_num_t ap_events[] = { WLC_E_LINK, WLC_E_IF, WLC_E_AUTH, WLC_E_AUTH_IND, WLC_E_DEAUTH, WLC_E_DEAUTH_IND, WLC_E_DISASSOC, WLC_E_DISASSOC_IND, WLC_E_ASSOC_IND, WLC_E_REASSOC_IND, WLC_E_NONE };
 
 static void *whd_default_handle_softap_events(whd_interface_t ifp, const whd_event_header_t *event_header,
                                               const uint8_t *event_data, void *handler_user_data)

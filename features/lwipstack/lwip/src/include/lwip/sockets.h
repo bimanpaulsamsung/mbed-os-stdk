@@ -47,7 +47,7 @@
 #include "lwip/netif.h"
 #include "lwip/err.h"
 #include "lwip/inet.h"
-#include "lwip/errno.h"
+#include "errno.h"
 
 #include <string.h>
 
@@ -504,12 +504,15 @@ typedef struct fd_set
 #define POLLWRBAND 0x100
 #define POLLHUP    0x200
 typedef unsigned int nfds_t;
+#ifndef POLL_FD_BIMAN
+#define POLL_FD_BIMAN
 struct pollfd
 {
   int fd;
   short events;
   short revents;
 };
+#endif
 #endif
 
 /** LWIP_TIMEVAL_PRIVATE: if you want to use the struct timeval provided

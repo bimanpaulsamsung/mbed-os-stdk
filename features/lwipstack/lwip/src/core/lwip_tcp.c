@@ -98,7 +98,7 @@
  */
 
 #include "lwip/opt.h"
-
+#define LWIP_TCP 1
 #if LWIP_TCP /* don't build if not configured for use in lwipopts.h */
 
 #include "lwip/def.h"

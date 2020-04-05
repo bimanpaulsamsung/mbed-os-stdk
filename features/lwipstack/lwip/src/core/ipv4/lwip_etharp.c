@@ -198,7 +198,7 @@ etharp_tmr(void)
 {
   int i;
 
-  LWIP_DEBUGF(ETHARP_DEBUG, ("etharp_timer\n"));
+//  LWIP_DEBUGF(ETHARP_DEBUG, ("etharp_timer\n"));
   /* remove expired entries from the ARP table */
   for (i = 0; i < ARP_TABLE_SIZE; ++i) {
     u8_t state = arp_table[i].state;
@@ -212,8 +212,8 @@ etharp_tmr(void)
           ((arp_table[i].state == ETHARP_STATE_PENDING)  &&
            (arp_table[i].ctime >= ARP_MAXPENDING))) {
         /* pending or stable entry has become old! */
-        LWIP_DEBUGF(ETHARP_DEBUG, ("etharp_timer: expired %s entry %d.\n",
-                                   arp_table[i].state >= ETHARP_STATE_STABLE ? "stable" : "pending", i));
+//        LWIP_DEBUGF(ETHARP_DEBUG, ("etharp_timer: expired %s entry %d.\n",
+//                                   arp_table[i].state >= ETHARP_STATE_STABLE ? "stable" : "pending", i));
         /* clean up entries that have just been expired */
         etharp_free_entry(i);
       } else if (arp_table[i].state == ETHARP_STATE_STABLE_REREQUESTING_1) {

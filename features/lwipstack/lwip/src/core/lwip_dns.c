@@ -208,6 +208,12 @@ struct dns_answer {
 /* maximum allowed size for the struct due to non-packed */
 #define SIZEOF_DNS_ANSWER_ASSERT 12
 
+
+#define LWIP_DEBUGF(debug, message) do { \
+                                 printf message; \
+                             } while(0)
+
+
 /* DNS table entry states */
 typedef enum {
   DNS_STATE_UNUSED           = 0,
@@ -366,18 +372,25 @@ dns_init(void)
 void
 dns_setserver(u8_t numdns, const ip_addr_t *dnsserver, struct netif *netif)
 {
+	LWIP_DEBUGF(DNS_DEBUG, ("dns_setserver: numdns %d\n", numdns));
+	char *ip = (char *)dnsserver;
+	LWIP_DEBUGF(DNS_DEBUG, ("dns_setserver: DNS IP: %d.%d.%d.%d\n", ip[0], ip[1], ip[2], ip[3]));
 
-  if (netif == NULL ) {
+//  if (netif == NULL ) {
     if (numdns < DNS_MAX_SERVERS) {
       if (dnsserver != NULL) {
+    	  LWIP_DEBUGF(DNS_DEBUG, ("dns_setserver: DNS SET\n"));
         dns_servers[numdns] = (*dnsserver);
       } else {
+    	  LWIP_DEBUGF(DNS_DEBUG, ("dns_setserver: IP_ADDR_ANY\n"));
         dns_servers[numdns] = *IP_ADDR_ANY;
       }
     }
-  } else {
+//  } else
+	  if (netif) {
     char name[INTERFACE_NAME_MAX_SIZE];
     sprintf(name, "%c%c%d", netif->name[0], netif->name[1], netif->num);
+    LWIP_DEBUGF(DNS_DEBUG, ("dns_setserver: Add DNS to  %s\n", name));
     dns_add_interface_server(numdns, name, dnsserver);
   }
 }
@@ -508,7 +521,7 @@ void
 dns_tmr(void)
 {
 #if LWIP_FULL_DNS
-  LWIP_DEBUGF(DNS_DEBUG, ("dns_tmr: dns_check_entries\n"));
+//  LWIP_DEBUGF(DNS_DEBUG, ("dns_tmr: dns_check_entries\n"));
   dns_check_entries();
 #endif
 }
@@ -1736,10 +1749,11 @@ dns_gethostbyname_addrtype(const char *hostname, ip_addr_t *addr, dns_found_call
   {
     /* prevent calling found callback if no server is set, return error instead */
     if (ip_addr_isany_val(dns_servers[0])) {
+    	LWIP_DEBUGF(DNS_DEBUG, ("dns_gethostbyname: No dns server"));
       return ERR_VAL;
     }
   }
-
+  LWIP_DEBUGF(DNS_DEBUG, ("dns_gethostbyname: call dns_enqueue"));
   /* queue query with specified callback */
   return dns_enqueue(hostname, hostnamelen, found, callback_arg LWIP_DNS_ADDRTYPE_ARG(dns_addrtype)
                      LWIP_DNS_ISMDNS_ARG(is_mdns));

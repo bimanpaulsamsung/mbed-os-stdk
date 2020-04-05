@@ -550,11 +550,15 @@ enum {
 #define F_GETFL 3
 #define F_SETFL 4
 
-struct pollfd {
-    int fd;
-    short events;
-    short revents;
+#ifndef POLL_FD_BIMAN
+#define POLL_FD_BIMAN
+struct pollfd
+{
+  int fd;
+  short events;
+  short revents;
 };
+#endif
 
 /* POSIX-compatible I/O functions */
 #if __cplusplus

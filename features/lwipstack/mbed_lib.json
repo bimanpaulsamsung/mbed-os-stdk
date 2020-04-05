@@ -84,7 +84,7 @@
         },
         "memp-num-tcpip-msg-inpkt": {
             "help": "Number of simultaneously queued TCP messages that are received",
-            "value": 8
+            "value": 32
         },
         "tcp-mss": {
             "help": "TCP Maximum segment size, see LWIP opt.h for more information. Current default is 536.",
