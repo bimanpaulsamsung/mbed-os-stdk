@@ -194,8 +194,8 @@
 
 #define LWIP_DNS                    1
 // Only DNS address storage is enabled
-#define LWIP_FULL_DNS               0
-#define LWIP_SOCKET                 0
+#define LWIP_FULL_DNS               1
+#define LWIP_SOCKET                 1
 
 #define SO_REUSE                    1
 
@@ -204,8 +204,8 @@
 #define LWIP_IGMP                   LWIP_IPV4
 #define LWIP_RAND()                 lwip_get_random()
 
-#define LWIP_COMPAT_SOCKETS         0
-#define LWIP_POSIX_SOCKETS_IO_NAMES 0
+#define LWIP_COMPAT_SOCKETS         1
+#define LWIP_POSIX_SOCKETS_IO_NAMES 1
 #define LWIP_SO_RCVTIMEO            1
 
 #define LWIP_BROADCAST_PING         1
