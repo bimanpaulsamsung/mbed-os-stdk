@@ -185,6 +185,8 @@ void CyDhcpServer::setAddress(const cy_mac_addr_t &mac_id, const cy_ip_addr_t &a
     uint32_t cached_slot;
     char empty_cache[NSAPI_IPv6_SIZE] = "";
 
+    uint8_t *ips = (uint8_t *)addr.addrv4.addrs;
+    printf("Assigned IP : %u.%u.%u.%u\n", ips[3],ips[2],ips[1],ips[0]);
     /* Search for empty slot in cache */
     for (a = 0, first_empty_slot = DHCP_IP_ADDRESS_CACHE_MAX, cached_slot = DHCP_IP_ADDRESS_CACHE_MAX; a < DHCP_IP_ADDRESS_CACHE_MAX; a++) {
         /* Check for matching MAC address */
