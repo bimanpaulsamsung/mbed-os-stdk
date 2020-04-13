@@ -504,12 +504,15 @@ typedef struct fd_set
 #define POLLWRBAND 0x100
 #define POLLHUP    0x200
 typedef unsigned int nfds_t;
+#ifndef POLL_FD_LWIP_SOCKET
+#define POLL_FD_LWIP_SOCKET
 struct pollfd
 {
   int fd;
   short events;
   short revents;
 };
+#endif /* POLL_FD_LWIP_SOCKET */
 #endif
 
 /** LWIP_TIMEVAL_PRIVATE: if you want to use the struct timeval provided

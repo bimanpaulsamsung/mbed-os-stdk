@@ -550,11 +550,14 @@ enum {
 #define F_GETFL 3
 #define F_SETFL 4
 
+#ifndef POLL_FD_LWIP_SOCKET
+#define POLL_FD_LWIP_SOCKET
 struct pollfd {
     int fd;
     short events;
     short revents;
 };
+#endif /* POLL_FD_LWIP_SOCKET */
 
 /* POSIX-compatible I/O functions */
 #if __cplusplus
