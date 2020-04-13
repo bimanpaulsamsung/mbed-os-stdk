@@ -367,7 +367,7 @@ void
 dns_setserver(u8_t numdns, const ip_addr_t *dnsserver, struct netif *netif)
 {
 
-  if (netif == NULL ) {
+//  if (netif == NULL ) {
     if (numdns < DNS_MAX_SERVERS) {
       if (dnsserver != NULL) {
         dns_servers[numdns] = (*dnsserver);
@@ -375,7 +375,8 @@ dns_setserver(u8_t numdns, const ip_addr_t *dnsserver, struct netif *netif)
         dns_servers[numdns] = *IP_ADDR_ANY;
       }
     }
-  } else {
+//  } else
+  if (netif) {
     char name[INTERFACE_NAME_MAX_SIZE];
     sprintf(name, "%c%c%d", netif->name[0], netif->name[1], netif->num);
     dns_add_interface_server(numdns, name, dnsserver);
