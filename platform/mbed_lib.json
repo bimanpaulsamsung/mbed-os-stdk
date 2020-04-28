@@ -110,7 +110,7 @@
         "heap-stats-enabled": {
             "macro_name": "MBED_HEAP_STATS_ENABLED",
             "help": "Set to 1 to enable heap stats. When enabled the function mbed_stats_heap_get returns non-zero data. See mbed_stats.h for more information",
-            "value": null
+            "value": 1
         },
 
         "thread-stats-enabled": {
